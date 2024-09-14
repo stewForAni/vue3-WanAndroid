@@ -8,4 +8,8 @@ function isEmpty(obj) {
   }
 }
 
-export { isEmpty, showMessage }
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+}
+
+export { isEmpty, showMessage, isMobile }

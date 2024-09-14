@@ -9,6 +9,8 @@ const app = createApp(App)
 
 app.config.globalProperties.$http = axios
 
+document.documentElement.style.fontSize = '10px'
+
 app.use(router)
 
 app.mount('#app')

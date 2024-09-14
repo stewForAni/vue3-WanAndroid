@@ -26,22 +26,13 @@
 
 <script setup>
 import { onMounted, reactive } from 'vue'
-import fakeData from '../../public/fakedata.json'
+import fakeData from '../assets/json/fakedata.json'
 
 // import { getArtData } from '../network/api.js'
 
 const articleData = reactive({ data: [] })
 
-onMounted(() => {
-  // getArtData().then((res) => {
-  //   console.log(res)
-  // })
-  // console.log(fakeData.data.datas)
-  articleData.data = fakeData.data.datas
-})
-
 const getCname = function (v) {
-  console.log(v)
   if (v === '公众号') {
     return reactive({
       sub_title0: true
@@ -52,13 +43,20 @@ const getCname = function (v) {
     })
   }
 }
+
+onMounted(() => {
+  // getArtData().then((res) => {
+  //   console.log(res)
+  // })
+  console.log(document.documentElement.style.fontSize)
+  articleData.data = fakeData.data.datas
+})
 </script>
 
 <style scoped>
 .container {
   display: flex;
   flex-direction: column;
-  min-width: 600px;
   height: 100vh;
 }
 
@@ -88,6 +86,9 @@ const getCname = function (v) {
 .title {
   font-size: 2rem;
   font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .subtitle {
@@ -127,16 +128,14 @@ const getCname = function (v) {
   flex-direction: column;
   padding: 2rem;
 }
+
 .item {
   width: 100%;
-  height: 8rem;
   background-color: var(--color-background-soft);
   margin-bottom: 2rem;
   border-radius: 1rem;
-
   align-content: center;
-  padding-left: 2rem;
-
+  padding: 2rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -150,21 +149,16 @@ const getCname = function (v) {
   font-size: 1.2rem;
 }
 
-.item .sub_container {
+.sub_container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 1rem;
 }
 
-.item .sub_title {
-  font-size: 1rem;
-  margin-right: 1rem;
-}
 .sub_title0 {
   font-size: 1rem;
   color: white;
-  margin-right: 1rem;
   border-radius: 0.4rem;
   padding: 0 0.5rem 0 0.5rem;
   background-color: #32a14a;
@@ -173,10 +167,41 @@ const getCname = function (v) {
 .sub_title1 {
   font-size: 1rem;
   color: white;
-  margin-right: 1rem;
   border-radius: 0.4rem;
   padding: 0 0.5rem 0 0.5rem;
   background-color: #2790f2;
+}
+
+@media (min-width: 600px) {
+  .sub_container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sub_title0 {
+    font-size: 1rem;
+    color: white;
+    margin-right: 1rem;
+    border-radius: 0.4rem;
+    padding: 0 0.5rem 0 0.5rem;
+    background-color: #32a14a;
+  }
+
+  .sub_title1 {
+    font-size: 1rem;
+    color: white;
+    margin-right: 1rem;
+    border-radius: 0.4rem;
+    padding: 0 0.5rem 0 0.5rem;
+    background-color: #2790f2;
+  }
+}
+
+.item .sub_title {
+  font-size: 1rem;
+  margin-right: 1rem;
 }
 
 @keyframes scaleAnimation {
